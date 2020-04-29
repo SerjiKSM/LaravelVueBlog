@@ -28,6 +28,8 @@ import {routes} from './routes';
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('home', require('./components/admin/AdminHome.vue').default);
+Vue.component('admin-main', require('./components/admin/AdminMaster.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -39,7 +41,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const router = new VueRouter({
     routes, // short for `routes: routes`
     // mode:'hash',
-    // mode:'history',
+    mode:'history',
 })
 
 const app = new Vue({
