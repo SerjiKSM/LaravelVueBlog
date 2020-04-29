@@ -21,7 +21,7 @@ class CategoryController extends Controller
         ]);
         $category = New Category();
         $category->cat_name = $request->cat_name;
-        $category->save();
+//        $category->save();
         return ['message' => 'OK'];
     }
 
