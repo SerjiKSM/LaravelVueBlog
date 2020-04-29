@@ -31,12 +31,13 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 // Vue.component('home', require('./components/admin/AdminHome.vue').default);
 Vue.component('admin-main', require('./components/admin/AdminMaster.vue').default);
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
 
+// V-form
+import { Form, HasError, AlertError } from 'vform'
+
+window.Form = Form;
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
 
 const router = new VueRouter({
     routes, // short for `routes: routes`

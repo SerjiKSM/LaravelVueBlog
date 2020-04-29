@@ -22,20 +22,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/{anypath}','HomeController@index')->where('path','.*');
 
 Route::group(['middleware' => ['auth']], function () {
-    //Category
-//    Route::post('/add-category','CategoryController@addCategory');
-//    Route::get('category','CategoryController@allCategory');
-//    Route::get('category/{id}','CategoryController@deleteCategory');
-//    Route::get('editcategory/{id}','CategoryController@editCategory');
-//    Route::post('update-category/{id}','CategoryController@updateCategory');
-//    Route::get('/deletecategory/{id}','CategoryController@selectedCategory');
 
-    //Post
-//    Route::get('/post','PostController@allPost');
-//    Route::post('/savepost','PostController@savePost');
-//    Route::get('/delete/{id}','PostController@deletePost');
-//    Route::get('/post/{id}','PostController@editPost');
-//    Route::post('/update/{id}','PostController@updatePost');
+    Route::post('/add-category','CategoryController@addCategory');
+    Route::get('category','CategoryController@allCategory');
+    Route::get('category/{id}','CategoryController@deleteCategory');
+    Route::get('edit-category/{id}','CategoryController@editCategory');
+    Route::post('update-category/{id}','CategoryController@updateCategory');
+    Route::get('/delete-category/{id}','CategoryController@selectedCategory');
+
+    Route::get('/post','PostController@allPost');
+    Route::post('/save-post','PostController@savePost');
+    Route::get('/delete/{id}','PostController@deletePost');
+    Route::get('/post/{id}','PostController@editPost');
+    Route::post('/update/{id}','PostController@updatePost');
 });
 
 

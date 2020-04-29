@@ -6,11 +6,15 @@
                     <div class="card-header">
                         <h3 class="card-title">Add new category</h3>
                     </div>
-                    <form role="form">
+                    <form role="form" @click.prevent="addCategory()">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="category">Add new category</label>
-                                <input type="text" class="form-control" id="category" placeholder="Add new category">
+                                <label for="categoryId">Add new category</label>
+                                <input type="text" class="form-control" id="categoryId" placeholder="Add new category"
+                                       v-model="form.cat_name" name="cat_name"
+                                       :class="{ 'is-invalid': form.errors.has('cat_name') }"
+                                >
+                                <has-error :form="form" field="cat_name"></has-error>
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Save</button>
@@ -28,7 +32,28 @@
 
 <script>
     export default {
-        name: "new"
+        name: "new",
+        data() {
+            return {
+                form: new Form({
+                    cat_name: ''
+                })
+            }
+        },
+        methods: {
+            addCategory() {
+                this.form.post('/add-category')
+                    .then((response) => {
+                        this.$router.push('/category-list')
+                        toast({
+                            type: 'success',
+                            title: 'Category Added successfully'
+                        })
+                    })
+                    .catch(() => {
+                    })
+            }
+        }
     }
 </script>
 
