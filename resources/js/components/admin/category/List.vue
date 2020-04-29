@@ -1,13 +1,16 @@
 <template>
+    <div>
     <!-- Main content -->
     <section class="content">
-        <div class="row">
-            <div class="col-12">
+        <div class="row justify-content-around">
+            <div class="col-8">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Category list</h3>
                         <div class="card-tools">
-                            <button class="btn btn-primary">Add category</button>
+                            <button class="btn btn-primary">
+                                <router-link to="/add-category" style="color: #FFF">Add category</router-link>
+                            </button>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -40,6 +43,7 @@
         <!-- /.row -->
     </section>
     <!-- /.content -->
+    </div>
 </template>
 
 <script>
