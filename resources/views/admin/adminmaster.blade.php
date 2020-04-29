@@ -40,13 +40,13 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
+                        <router-link to="/home" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
                                 <i class="right fas fa-angle-left"></i>
                             </p>
-                        </a>
+                        </router-link>
                     </li>
                     <li class="nav-item">
                         <a href="../widgets.html" class="nav-link">
@@ -57,13 +57,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../widgets.html" class="nav-link">
+                        <router-link to="/post" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Post
                                 <span class="right badge badge-danger">New</span>
                             </p>
-                        </a>
+                        </router-link>
                     </li>
                 </ul>
             </nav>
@@ -89,7 +89,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <example-component></example-component>
+    {{--<example-component></example-component>--}}
 
     <footer class="main-footer">
         <div class="float-right d-none d-sm-block">

@@ -53024,7 +53024,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "routes", function() { return routes; });
-/* harmony import */ var _components_admin_AdminHome_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/admin/AdminHome.vue */ "./resources/js/components/admin/AdminHome.vue");
+/* harmony import */ var _components_ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue");
+/* harmony import */ var _components_admin_AdminHome_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/admin/AdminHome.vue */ "./resources/js/components/admin/AdminHome.vue");
+
  // import CategoryList from './components/admin/category/List.vue'
 // import AddCategory from './components/admin/category/New.vue'
 // import EditCategory from './components/admin/category/Edit.vue'
@@ -53040,8 +53042,11 @@ __webpack_require__.r(__webpack_exports__);
 // import EditPost from './components/admin/post/Edit.vue'
 
 var routes = [{
+  path: '/post',
+  component: _components_ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+}, {
   path: '/home',
-  component: _components_admin_AdminHome_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  component: _components_admin_AdminHome_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
 } // {
 //     path:'/category-list',
 //     component:CategoryList

@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/{anypath}','HomeController@index')->where('path','.*');
+
 Route::group(['middleware' => ['auth']], function () {
     //Category
 //    Route::post('/add-category','CategoryController@addCategory');
@@ -29,7 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
 //    Route::get('/deletecategory/{id}','CategoryController@selectedCategory');
 
     //Post
-    Route::get('/post','PostController@allPost');
+//    Route::get('/post','PostController@allPost');
 //    Route::post('/savepost','PostController@savePost');
 //    Route::get('/delete/{id}','PostController@deletePost');
 //    Route::get('/post/{id}','PostController@editPost');
