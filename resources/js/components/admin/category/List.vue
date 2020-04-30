@@ -26,12 +26,12 @@
                             </thead>
                             <tbody>
                             <tr v-for="(category,index) in getAllCategory" :key="category.id">
-                                <td>{{ index+1}}</td>
+                                <td>{{index+1}}</td>
                                 <td>{{category.cat_name}}</td>
                                 <td>{{category.created_at | timeformat}}</td>
                                 <td>
                                     <a href="" class="btn btn-primary">Edit</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
+                                    <a href="" @click.prevent = "deleteCategory(category.id)" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                             </tbody>
@@ -67,19 +67,25 @@
             }
         },
         methods:{
-            // deletecategory(id){
-            //     axios.get('/category/'+id)
-            //         .then(()=>{
-            //             this.$store.dispatch("allCategory")
-            //             toast({
-            //                 type: 'success',
-            //                 title: 'Category Deleted successfully'
-            //             })
-            //         })
-            //         .catch(()=>{
-            //             console.log(error);
-            //         })
-            // },
+            deleteCategory(id){
+                axios.get('/category/'+id)
+                    .then(()=>{
+                        this.$store.dispatch("allCategory")
+                        // toast({
+                        //     type: 'success',
+                        //     title: 'Category Deleted successfully'
+                        // })
+                        // toast.fire({
+                        //     type: 'success',
+                        //     title: 'Category Deleted successfully'
+                        // })
+                        this.$swal("Category Deleted successfully!", {
+                            icon: "success",
+                        });
+                    })
+                    .catch(()=>{
+                    })
+            },
             // deleteSelected(){
             //     console.log(this.categoryItem)
             //     axios.get('/deletecategory/'+this.categoryItem)

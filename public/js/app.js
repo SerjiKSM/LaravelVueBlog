@@ -1902,20 +1902,26 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.getters.getCategory;
     }
   },
-  methods: {// deletecategory(id){
-    //     axios.get('/category/'+id)
-    //         .then(()=>{
-    //             this.$store.dispatch("allCategory")
-    //             toast({
-    //                 type: 'success',
-    //                 title: 'Category Deleted successfully'
-    //             })
-    //         })
-    //         .catch(()=>{
-    //             console.log(error);
-    //         })
-    // },
-    // deleteSelected(){
+  methods: {
+    deleteCategory: function deleteCategory(id) {
+      var _this = this;
+
+      axios.get('/category/' + id).then(function () {
+        _this.$store.dispatch("allCategory"); // toast({
+        //     type: 'success',
+        //     title: 'Category Deleted successfully'
+        // })
+        // toast.fire({
+        //     type: 'success',
+        //     title: 'Category Deleted successfully'
+        // })
+
+
+        _this.$swal("Category Deleted successfully!", {
+          icon: "success"
+        });
+      })["catch"](function () {});
+    } // deleteSelected(){
     //     console.log(this.categoryItem)
     //     axios.get('/deletecategory/'+this.categoryItem)
     //         .then(()=>{
@@ -1938,6 +1944,7 @@ __webpack_require__.r(__webpack_exports__);
     //         this.categoryItem = []
     //     }
     // }
+
   }
 });
 
@@ -56545,7 +56552,31 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(1, true)
+                        _c("td", [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-primary",
+                              attrs: { href: "" }
+                            },
+                            [_vm._v("Edit")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-danger",
+                              attrs: { href: "" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.deleteCategory(category.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Delete")]
+                          )
+                        ])
                       ])
                     }),
                     0
@@ -56573,20 +56604,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Date")]),
         _vm._v(" "),
         _c("th", [_vm._v("Action")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("a", { staticClass: "btn btn-primary", attrs: { href: "" } }, [
-        _vm._v("Edit")
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "btn btn-danger", attrs: { href: "" } }, [
-        _vm._v("Delete")
       ])
     ])
   }
@@ -73522,7 +73539,7 @@ module.exports = function(module) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store/index */ "./resources/js/store/index.js");
-/* harmony import */ var _filter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./filter */ "./resources/js/filter.js");
+/* harmony import */ var _filter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./filter */ "./resources/js/filter.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
@@ -73576,7 +73593,7 @@ window.Form = vform__WEBPACK_IMPORTED_MODULE_5__["Form"]; //////////////////////
 //     timer: 3000
 // });
 // window.toast = toast;
-//message
+//message $swal
 
 
 Vue.use(vue_swal__WEBPACK_IMPORTED_MODULE_6___default.a); ////////////////////////////////////////////////////

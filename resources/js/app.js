@@ -63,7 +63,7 @@ window.Form = Form;
 // });
 // window.toast = toast;
 
-//message
+//message $swal
 import VueSwal from 'vue-swal';
 Vue.use(VueSwal);
 ////////////////////////////////////////////////////
