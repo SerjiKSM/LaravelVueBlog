@@ -24,9 +24,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Trident</td>
+                            <tr v-for="(category,index) in getAllCategory" :key="category.id">
+                                <td>{{ index+1}}</td>
+                                <td>{{category.cat_name}}</td>
                                 <td>
                                     <a href="" class="btn btn-primary">Edit</a>
                                     <a href="" class="btn btn-danger">Delete</a>
@@ -48,7 +48,60 @@
 
 <script>
     export default {
-        name: "list"
+        name: "List",
+        // data(){
+        //     return{
+                // categoryItem:[],
+                // select:'',
+                // all_select:false
+        //     }
+        // },
+        mounted(){
+            this.$store.dispatch("allCategory")
+        },
+        computed:{
+            getAllCategory(){
+                return this.$store.getters.getCategory
+            }
+        },
+        methods:{
+            // deletecategory(id){
+            //     axios.get('/category/'+id)
+            //         .then(()=>{
+            //             this.$store.dispatch("allCategory")
+            //             toast({
+            //                 type: 'success',
+            //                 title: 'Category Deleted successfully'
+            //             })
+            //         })
+            //         .catch(()=>{
+            //             console.log(error);
+            //         })
+            // },
+            // deleteSelected(){
+            //     console.log(this.categoryItem)
+            //     axios.get('/deletecategory/'+this.categoryItem)
+            //         .then(()=>{
+            //             this.categoryItem = []
+            //             this.$store.dispatch("allCategory")
+            //             toast({
+            //                 type: 'success',
+            //                 title: 'Category Deleted successfully'
+            //             })
+            //         })
+            // },
+            // selectAll(){
+            //     if(this.all_select==false){
+            //         this.all_select = true
+            //         for(var category in this.getallCategory){
+            //             this.categoryItem.push(this.getallCategory[category].id)
+            //         }
+            //     }else{
+            //         this.all_select = false
+            //         this.categoryItem = []
+            //     }
+            // }
+        }
     }
 </script>
 

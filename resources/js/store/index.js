@@ -1,14 +1,14 @@
 export default {
-    state:{
-        category:[],
+    state: {
+        category: [],
         // post:[],
         // blogpost:[],
         // singlepost:[],
         // allcategories:[],
         // latestpost:[]
     },
-    getters:{
-        getCategory(state){
+    getters: {
+        getCategory(state) {
             return state.category
         },
         // getAllPost(state){
@@ -28,13 +28,13 @@ export default {
         // }
 
     },
-    actions:{
-        // allCategory(context){
-        //     axios.get('/category')
-        //         .then((response)=>{
-        //             context.commit('categoreis',response.data.categories)
-        //         })
-        // },
+    actions: {
+        allCategory(context) {
+            axios.get('/category')
+                .then((response) => {
+                    context.commit('categoreis', response.data.categories)
+                })
+        },
         // gelAllPost(context){
         //     axios.get('/post')
         //         .then((response)=>{
@@ -84,10 +84,10 @@ export default {
         //         })
         // }
     },
-    mutations:{
-        // categoreis(state,data){
-        //     return state.category = data
-        // },
+    mutations: {
+        categoreis(state, data) {
+            return state.category = data
+        },
         // allpost(state,payload){
         //     return state.post = payload
         // },
