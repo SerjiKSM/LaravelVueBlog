@@ -1874,11 +1874,14 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.form.post("/update-category/".concat(this.$route.params.categoryid)).then(function (response) {
-        _this2.$router.push('/category-list');
+        _this2.$router.push('/category-list'); // toast({
+        //     type: 'success',
+        //     title: 'Category Updated successfully'
+        // })
 
-        toast({
-          type: 'success',
-          title: 'Category Updated successfully'
+
+        _this2.$swal("Category Updated successfully!", {
+          icon: "success"
         });
       })["catch"](function () {});
     }
@@ -2079,8 +2082,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.$swal("Category Added successfully!", {
           icon: "success"
         });
-      })["catch"](function () {
-        console.log(error);
+      })["catch"](function () {// console.log(error);
       });
     }
   }

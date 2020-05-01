@@ -58,10 +58,14 @@
                 this.form.post(`/update-category/${this.$route.params.categoryid}`)
                     .then((response)=>{
                         this.$router.push('/category-list')
-                        toast({
-                            type: 'success',
-                            title: 'Category Updated successfully'
-                        })
+                        // toast({
+                        //     type: 'success',
+                        //     title: 'Category Updated successfully'
+                        // })
+
+                        this.$swal("Category Updated successfully!", {
+                            icon: "success",
+                        });
                     })
                     .catch(()=>{
                     })
