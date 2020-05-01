@@ -57,14 +57,24 @@
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/post" class="nav-link">
+                        <router-link to="/post-list" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Post
+                            </p>
+                        </router-link>
+                    </li>
+
+                    <li class="nav-item">
+                        <router-link to="/example" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Example compoent
                                 <span class="right badge badge-danger">New</span>
                             </p>
                         </router-link>
                     </li>
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

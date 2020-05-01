@@ -10,8 +10,8 @@ use Image;
 class PostController extends Controller
 {
     public function allPost(){
-        $posts = Post::all();
-//        $posts = Post::with('user','category')->orderBy('id','desc')->get();
+//        $posts = Post::all();
+        $posts = Post::with('user','category')->orderBy('id','desc')->get();
         return response()->json([
             'posts'=>$posts
         ],200);
