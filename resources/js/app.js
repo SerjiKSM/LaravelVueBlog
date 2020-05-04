@@ -9,6 +9,12 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+// editor support
+// import 'v-markdown-editor/dist/index.css';
+import 'v-markdown-editor/dist/v-markdown-editor.css';
+import Editor from 'v-markdown-editor'
+Vue.use(Editor);
+
 // Support vuex
 import Vuex from 'vuex'
 Vue.use(Vuex);

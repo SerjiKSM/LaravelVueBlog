@@ -22,13 +22,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="descriptionId">Add New Description</label>
+                                    <!--<textarea type="text" class="form-control" id="descriptionId" placeholder="Add New Description"-->
+                                           <!--v-model="form.description" name="description"-->
+                                           <!--:class="{ 'is-invalid': form.errors.has('description') }">-->
+                                    <!--</textarea>-->
 
-                                    <textarea type="text" class="form-control" id="descriptionId" placeholder="Add New Description"
-                                           v-model="form.description" name="description"
-                                           :class="{ 'is-invalid': form.errors.has('description') }">
-                                    </textarea>
-
-                                    <!--<markdown-editor v-model="form.description"></markdown-editor>-->
+                                    <markdown-editor v-model="form.description"></markdown-editor>
 
                                     <has-error :form="form" field="description"></has-error>
                                 </div>
