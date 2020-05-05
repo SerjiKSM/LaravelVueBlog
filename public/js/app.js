@@ -4677,6 +4677,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "list",
   mounted: function mounted() {
@@ -4689,7 +4691,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     ourImage: function ourImage(img) {
-      return "uploadimage/" + img;
+      return "uploadImage/" + img;
     },
     deletePost: function deletePost(id) {// axios.get('/delete/'+id)
       //     .then(()=>{
@@ -80959,7 +80961,7 @@ var render = function() {
                         _c("td", [
                           _c("img", {
                             attrs: {
-                              src: post.photo,
+                              src: _vm.ourImage(post.photo),
                               alt: "",
                               width: "40",
                               height: "50"

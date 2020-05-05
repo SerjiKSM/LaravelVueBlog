@@ -40,10 +40,12 @@
 
                                     <td>{{post.title | sortlength(20,"---")}}</td>
                                     <td>{{post.description | sortlength(40,"....")}}</td>
-                                    <!--<td><img :src="ourImage(post.photo)" alt="" width="40" height="50"></td>-->
                                     <td>
-                                        <img :src="post.photo" alt="" width="40" height="50">
+                                        <img :src="ourImage(post.photo)" alt="" width="40" height="50">
                                     </td>
+                                    <!--<td>-->
+                                        <!--<img :src="post.photo" alt="" width="40" height="50">-->
+                                    <!--</td>-->
                                     <td>
                                         <router-link :to="`edit-post/${post.id}`" class="btn btn-primary">Edit</router-link>
                                         <a href="" @click.prevent = "deletePost(post.id)" class="btn btn-danger">Delete</a>
@@ -80,7 +82,7 @@
         },
         methods:{
             ourImage(img){
-                return "uploadimage/"+img;
+                return "uploadImage/"+img;
             },
             deletePost(id){
                 // axios.get('/delete/'+id)
