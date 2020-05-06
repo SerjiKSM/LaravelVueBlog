@@ -85,16 +85,19 @@
                 return "uploadImage/"+img;
             },
             deletePost(id){
-                // axios.get('/delete/'+id)
-                //     .then(()=>{
-                //         this.$store.dispatch('getAllPost')
-                //         toast({
-                //             type: 'success',
-                //             title: 'Post Deleted successfully'
-                //         })
-                //     })
-                //     .catch(()=>{
-                //     })
+                axios.get('/delete/'+id)
+                    .then(()=>{
+                        this.$store.dispatch('allPost')
+                        // toast({
+                        //     type: 'success',
+                        //     title: 'Post Deleted successfully'
+                        // })
+                        this.$swal("Post Deleted successfully!", {
+                            icon: "success",
+                        });
+                    })
+                    .catch(()=>{
+                    })
             }
         }
     }

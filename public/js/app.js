@@ -4693,16 +4693,20 @@ __webpack_require__.r(__webpack_exports__);
     ourImage: function ourImage(img) {
       return "uploadImage/" + img;
     },
-    deletePost: function deletePost(id) {// axios.get('/delete/'+id)
-      //     .then(()=>{
-      //         this.$store.dispatch('getAllPost')
-      //         toast({
-      //             type: 'success',
-      //             title: 'Post Deleted successfully'
-      //         })
-      //     })
-      //     .catch(()=>{
-      //     })
+    deletePost: function deletePost(id) {
+      var _this = this;
+
+      axios.get('/delete/' + id).then(function () {
+        _this.$store.dispatch('allPost'); // toast({
+        //     type: 'success',
+        //     title: 'Post Deleted successfully'
+        // })
+
+
+        _this.$swal("Post Deleted successfully!", {
+          icon: "success"
+        });
+      })["catch"](function () {});
     }
   }
 });
