@@ -15,12 +15,13 @@ class BlogController extends Controller
         ],200);
     }
 
-//    public function getPostById($id){
-//        $post = Post::with('user','category')->where('id',$id)->first();
-//        return response()->json([
-//            'post'=>$post
-//        ],200);
-//    }
+    public function getPostById($id){
+        $post = Post::with('user','category')->where('id',$id)->first();
+        return response()->json([
+            'post'=>$post
+        ],200);
+    }
+
 //    public function getAllCategory(){
 //        $categories = Category::all();
 //        return response()->json([

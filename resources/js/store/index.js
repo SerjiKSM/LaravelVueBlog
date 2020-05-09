@@ -3,7 +3,7 @@ export default {
         category: [],
         post: [],
         blogpost:[],
-        // singlepost:[],
+        singlepost:[],
         // allcategories:[],
         // latestpost:[]
     },
@@ -17,9 +17,9 @@ export default {
         getblogPost(state){
             return state.blogpost
         },
-        // singlepost(state){
-        //     return state.singlepost
-        // },
+        singlepost(state){
+            return state.singlepost
+        },
         // allcategories(state){
         //     return state.allcategories
         // },
@@ -49,12 +49,12 @@ export default {
                     context.commit('getblogPost', response.data.posts)
                 })
         },
-        // getPostById(context,payload){
-        //     axios.get('/singlepost/'+payload)
-        //         .then((response)=>{
-        //             context.commit('siglePost',response.data.post)
-        //         })
-        // },
+        getPostById(context,payload){
+            axios.get('/singlepost/'+payload)
+                .then((response)=>{
+                    context.commit('siglePost',response.data.post)
+                })
+        },
         // allcategories(context){
         //     axios.get('/categories')
         //         .then((response)=>{
@@ -94,9 +94,9 @@ export default {
         getblogPost(state,payload){
             return state.blogpost = payload
         },
-        // siglePost(state,payload){
-        //     return state.singlepost = payload
-        // },
+        siglePost(state,payload){
+            return state.singlepost = payload
+        },
         // allcategories(state,payload){
         //     return state.allcategories = payload
         // },
