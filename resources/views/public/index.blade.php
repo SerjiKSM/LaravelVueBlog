@@ -241,7 +241,8 @@
         <!-- end header -->
 
         {{--Vue Routing--}}
-        {{--<home-main></home-main>--}}
+        <home-main></home-main>
+        {{--<example-component></example-component>--}}
 
         <footer>
             <div class="container">
