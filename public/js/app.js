@@ -5150,6 +5150,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -5188,8 +5190,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "blog-sidebar"
+  name: "blog-sidebar",
+  data: function data() {
+    return {
+      keyword: ''
+    };
+  },
+  computed: {
+    allcategories: function allcategories() {
+      return this.$store.getters.allcategories;
+    },
+    blogpost: function blogpost() {
+      return this.$store.getters.latestpost;
+    }
+  },
+  mounted: function mounted() {
+    this.$store.dispatch('latestPost');
+    this.$store.dispatch('allcategories');
+  },
+  methods: {// RealSearch:_.debounce(function () {
+    //     this.$store.dispatch('SearchPost',this.keyword);
+    // },1000)
+  }
 });
 
 /***/ }),
@@ -82182,33 +82209,95 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("span", { attrs: { id: "sidebar" } }, [
+    _c("div", { staticClass: "span4" }, [
+      _c("aside", { staticClass: "right-sidebar" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "widget" }, [
+          _c("h5", { staticClass: "widgetheading" }, [_vm._v("Categories")]),
+          _vm._v(" "),
+          _c(
+            "ul",
+            { staticClass: "cat" },
+            _vm._l(_vm.allcategories, function(category) {
+              return _c(
+                "li",
+                [
+                  _c("i", { staticClass: "icon-angle-right" }),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    { attrs: { to: "/categories/" + category.id } },
+                    [_vm._v(_vm._s(category.cat_name))]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(" (20)")])
+                ],
+                1
+              )
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "widget" }, [
+          _c("h5", { staticClass: "widgetheading" }, [_vm._v("Latest posts")]),
+          _vm._v(" "),
+          _c(
+            "ul",
+            { staticClass: "recent" },
+            _vm._l(_vm.blogpost, function(post, index) {
+              return index < 5
+                ? _c("li", [
+                    _c("img", {
+                      staticClass: "pull-left",
+                      attrs: {
+                        src: "uploadImage/" + post.photo,
+                        alt: "",
+                        width: "40",
+                        height: "40"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "h6",
+                      [
+                        _c(
+                          "router-link",
+                          { attrs: { to: "/blog/" + post.id } },
+                          [_vm._v(_vm._s(post.title))]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                 " +
+                          _vm._s(
+                            _vm._f("sortlength")(post.description, 100, "....")
+                          ) +
+                          "\n                "
+                      )
+                    ])
+                  ])
+                : _vm._e()
+            }),
+            0
+          )
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { attrs: { id: "sidebar" } }, [
-      _c("div", { staticClass: "span4" }, [
-        _c("aside", { staticClass: "right-sidebar" }, [
-          _c("div", { staticClass: "widget" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "widget" }, [
-            _c("h5", { staticClass: "widgetheading" }, [_vm._v("Categories")]),
-            _vm._v(" "),
-            _c("ul", { staticClass: "cat" })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "widget" }, [
-            _c("h5", { staticClass: "widgetheading" }, [
-              _vm._v("Latest posts")
-            ]),
-            _vm._v(" "),
-            _c("ul", { staticClass: "recent" })
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "widget" }, [
+      _c("form", { staticClass: "form-search" })
     ])
   }
 ]
@@ -100350,9 +100439,9 @@ __webpack_require__.r(__webpack_exports__);
     category: [],
     post: [],
     blogpost: [],
-    singlepost: [] // allcategories:[],
-    // latestpost:[]
-
+    singlepost: [],
+    allcategories: [],
+    latestpost: []
   },
   getters: {
     getCategory: function getCategory(state) {
@@ -100366,13 +100455,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     singlepost: function singlepost(state) {
       return state.singlepost;
-    } // allcategories(state){
-    //     return state.allcategories
-    // },
-    // latestpost(state){
-    //     return state.latestpost
-    // }
-
+    },
+    allcategories: function allcategories(state) {
+      return state.allcategories;
+    },
+    latestpost: function latestpost(state) {
+      return state.latestpost;
+    }
   },
   actions: {
     allCategory: function allCategory(context) {
@@ -100396,13 +100485,12 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/singlepost/' + payload).then(function (response) {
         context.commit('siglePost', response.data.post);
       });
-    } // allcategories(context){
-    //     axios.get('/categories')
-    //         .then((response)=>{
-    //
-    //             context.commit('allcategories',response.data.categories)
-    //         })
-    // },
+    },
+    allcategories: function allcategories(context) {
+      axios.get('/categories').then(function (response) {
+        context.commit('allcategories', response.data.categories);
+      });
+    },
     // getPostByCatId(context,payload){
     //     axios.get('/categorypost/'+payload)
     //         .then((response)=>{
@@ -100417,14 +100505,12 @@ __webpack_require__.r(__webpack_exports__);
     //         })
     //
     // },
-    // latestPost(context){
-    //     axios.get('/latestpost')
-    //         .then((response)=>{
-    //             // console.log(response.data)
-    //             context.commit('latestpost',response.data.posts)
-    //         })
-    // }
-
+    latestPost: function latestPost(context) {
+      axios.get('/latestpost').then(function (response) {
+        // console.log(response.data)
+        context.commit('latestpost', response.data.posts);
+      });
+    }
   },
   mutations: {
     categoreis: function categoreis(state, data) {
@@ -100438,19 +100524,19 @@ __webpack_require__.r(__webpack_exports__);
     },
     siglePost: function siglePost(state, payload) {
       return state.singlepost = payload;
-    } // allcategories(state,payload){
-    //     return state.allcategories = payload
-    // },
+    },
+    allcategories: function allcategories(state, payload) {
+      return state.allcategories = payload;
+    },
     // getPostByCatId(state,payload){
     //     state.blogpost = payload
     // },
     // getSearchPost(state,payload){
     //     state.blogpost = payload
     // },
-    // latestpost(state,payload){
-    //     state.latestpost = payload
-    // }
-
+    latestpost: function latestpost(state, payload) {
+      state.latestpost = payload;
+    }
   }
 });
 

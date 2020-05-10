@@ -22,12 +22,12 @@ class BlogController extends Controller
         ],200);
     }
 
-//    public function getAllCategory(){
-//        $categories = Category::all();
-//        return response()->json([
-//            'categories'=>$categories
-//        ],200);
-//    }
+    public function getAllCategory(){
+        $categories = Category::all();
+        return response()->json([
+            'categories'=>$categories
+        ],200);
+    }
 //    public function getAllPostByCatId($id){
 //        $posts = Post::with('user','category')->where('cat_id',$id)->orderBy('id','desc')->get();
 //        return response()->json([
@@ -50,10 +50,12 @@ class BlogController extends Controller
 //        }
 //
 //    }
-//    public function latestPost(){
-//        $posts = Post::with('user','category')->orderBy('id','desc')->get();
-//        return response()->json([
-//            'posts'=>$posts
-//        ],200);
-//    }
+
+    public function latestPost(){
+        $posts = Post::with('user','category')->orderBy('id','desc')->get();
+        return response()->json([
+            'posts'=>$posts
+        ],200);
+    }
+
 }

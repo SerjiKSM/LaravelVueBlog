@@ -4,8 +4,8 @@ export default {
         post: [],
         blogpost:[],
         singlepost:[],
-        // allcategories:[],
-        // latestpost:[]
+        allcategories:[],
+        latestpost:[]
     },
     getters: {
         getCategory(state) {
@@ -20,12 +20,12 @@ export default {
         singlepost(state){
             return state.singlepost
         },
-        // allcategories(state){
-        //     return state.allcategories
-        // },
-        // latestpost(state){
-        //     return state.latestpost
-        // }
+        allcategories(state){
+            return state.allcategories
+        },
+        latestpost(state){
+            return state.latestpost
+        }
 
     },
     actions: {
@@ -55,13 +55,13 @@ export default {
                     context.commit('siglePost',response.data.post)
                 })
         },
-        // allcategories(context){
-        //     axios.get('/categories')
-        //         .then((response)=>{
-        //
-        //             context.commit('allcategories',response.data.categories)
-        //         })
-        // },
+        allcategories(context){
+            axios.get('/categories')
+                .then((response)=>{
+
+                    context.commit('allcategories',response.data.categories)
+                })
+        },
         // getPostByCatId(context,payload){
         //     axios.get('/categorypost/'+payload)
         //         .then((response)=>{
@@ -76,13 +76,13 @@ export default {
         //         })
         //
         // },
-        // latestPost(context){
-        //     axios.get('/latestpost')
-        //         .then((response)=>{
-        //             // console.log(response.data)
-        //             context.commit('latestpost',response.data.posts)
-        //         })
-        // }
+        latestPost(context){
+            axios.get('/latestpost')
+                .then((response)=>{
+                    // console.log(response.data)
+                    context.commit('latestpost',response.data.posts)
+                })
+        }
     },
     mutations: {
         categoreis(state, data) {
@@ -97,17 +97,17 @@ export default {
         siglePost(state,payload){
             return state.singlepost = payload
         },
-        // allcategories(state,payload){
-        //     return state.allcategories = payload
-        // },
+        allcategories(state,payload){
+            return state.allcategories = payload
+        },
         // getPostByCatId(state,payload){
         //     state.blogpost = payload
         // },
         // getSearchPost(state,payload){
         //     state.blogpost = payload
         // },
-        // latestpost(state,payload){
-        //     state.latestpost = payload
-        // }
+        latestpost(state,payload){
+            state.latestpost = payload
+        }
     }
 }
