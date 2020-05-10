@@ -5110,6 +5110,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "blog-post",
@@ -5124,19 +5126,20 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.getters.getblogPost;
     }
   },
-  methods: {// getAllCategoryPost(){
-    //     if(this.$route.params.id!=null){
-    //         this.$store.dispatch('getPostByCatId',this.$route.params.id);
-    //     }else{
-    //         this.$store.dispatch('getblogPost');
-    //     }
-    // }
-  } // watch:{
-  //     $route(to,from){
-  //         this.getAllCategoryPost();
-  //     }
-  // }
-
+  methods: {
+    getAllCategoryPost: function getAllCategoryPost() {
+      if (this.$route.params.id != null) {
+        this.$store.dispatch('getPostByCatId', this.$route.params.id);
+      } else {
+        this.$store.dispatch('getblogPost');
+      }
+    }
+  },
+  watch: {
+    $route: function $route(to, from) {
+      this.getAllCategoryPost();
+    }
+  }
 });
 
 /***/ }),
@@ -100417,11 +100420,10 @@ var routes = [{
 }, {
   path: '/blog/:id',
   component: _components_public_blog_SingleBlog_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
-} // {
-//     path:'/categories/:id',
-//     component:BlogPost
-// },
-];
+}, {
+  path: '/categories/:id',
+  component: _components_public_blog_BlogPost_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+}];
 
 /***/ }),
 
@@ -100491,13 +100493,12 @@ __webpack_require__.r(__webpack_exports__);
         context.commit('allcategories', response.data.categories);
       });
     },
-    // getPostByCatId(context,payload){
-    //     axios.get('/categorypost/'+payload)
-    //         .then((response)=>{
-    //             console.log(response.data.posts)
-    //             context.commit('getPostByCatId',response.data.posts)
-    //         })
-    // },
+    getPostByCatId: function getPostByCatId(context, payload) {
+      axios.get('/categorypost/' + payload).then(function (response) {
+        console.log(response.data.posts);
+        context.commit('getPostByCatId', response.data.posts);
+      });
+    },
     // SearchPost(context,payload){
     //     axios.get('/search?s='+payload)
     //         .then((response)=>{
@@ -100528,9 +100529,9 @@ __webpack_require__.r(__webpack_exports__);
     allcategories: function allcategories(state, payload) {
       return state.allcategories = payload;
     },
-    // getPostByCatId(state,payload){
-    //     state.blogpost = payload
-    // },
+    getPostByCatId: function getPostByCatId(state, payload) {
+      state.blogpost = payload;
+    },
     // getSearchPost(state,payload){
     //     state.blogpost = payload
     // },

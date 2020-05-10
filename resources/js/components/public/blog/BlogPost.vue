@@ -31,7 +31,7 @@
                     <div class="post-heading">
                       <h3><a href="#">{{post.title}}</a></h3>
                     </div>
-                    <img :src="`uploadImage/${post.photo}`" alt="" />
+                    <img :src="`uploadImage/${post.photo}`" alt=""/>
                   </div>
                   <p>
                    {{post.description | sortlength(500,"...")}}
@@ -40,10 +40,12 @@
                     <ul class="meta-post">
                       <li><i class="icon-calendar"></i><a href="#"> Mar 23, 2013</a></li>
                       <li v-if="post.user"><i class="icon-user"></i><a href="#">{{post.user.name}}</a></li>
-                      <li v-if="post.category"><i class="icon-folder-open"></i><a href="#"> {{post.category.cat_name}}</a></li>
+                      <li v-if="post.category"><i class="icon-folder-open"></i><a
+                          href="#"> {{post.category.cat_name}}</a></li>
                       <li><i class="icon-comments"></i><a href="#">4 Comments</a></li>
                     </ul>
-                    <router-link :to="`/blog/${post.id}`" class="pull-right">Continue reading <i class="icon-angle-right"></i></router-link>
+                    <router-link :to="`/blog/${post.id}`" class="pull-right">Continue reading <i
+                        class="icon-angle-right"></i></router-link>
                   </div>
                 </div>
               </div>
@@ -67,33 +69,34 @@
 
 <script>
     import BlogSidebar from "./BlogSidebar.vue"
+
     export default {
         name: "blog-post",
-        components:{
+        components: {
             BlogSidebar
         },
-        mounted(){
+        mounted() {
             this.$store.dispatch('getblogPost');
         },
-        computed:{
-            blogpost(){
+        computed: {
+            blogpost() {
                 return this.$store.getters.getblogPost
             }
         },
-        methods:{
-            // getAllCategoryPost(){
-            //     if(this.$route.params.id!=null){
-            //         this.$store.dispatch('getPostByCatId',this.$route.params.id);
-            //     }else{
-            //         this.$store.dispatch('getblogPost');
-            //     }
-            // }
+        methods: {
+            getAllCategoryPost() {
+                if (this.$route.params.id != null) {
+                    this.$store.dispatch('getPostByCatId', this.$route.params.id);
+                } else {
+                    this.$store.dispatch('getblogPost');
+                }
+            }
         },
-        // watch:{
-        //     $route(to,from){
-        //         this.getAllCategoryPost();
-        //     }
-        // }
+        watch: {
+            $route(to, from) {
+                this.getAllCategoryPost();
+            }
+        }
     }
 </script>
 

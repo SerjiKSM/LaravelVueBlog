@@ -28,12 +28,14 @@ class BlogController extends Controller
             'categories'=>$categories
         ],200);
     }
-//    public function getAllPostByCatId($id){
-//        $posts = Post::with('user','category')->where('cat_id',$id)->orderBy('id','desc')->get();
-//        return response()->json([
-//            'posts'=>$posts
-//        ],200);
-//    }
+
+    public function getAllPostByCatId($id){
+        $posts = Post::with('user','category')->where('cat_id',$id)->orderBy('id','desc')->get();
+        return response()->json([
+            'posts'=>$posts
+        ],200);
+    }
+
 //    public function searchPost(){
 //
 //        $search = \Request::get('s');

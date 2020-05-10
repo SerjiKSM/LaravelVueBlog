@@ -62,13 +62,13 @@ export default {
                     context.commit('allcategories',response.data.categories)
                 })
         },
-        // getPostByCatId(context,payload){
-        //     axios.get('/categorypost/'+payload)
-        //         .then((response)=>{
-        //             console.log(response.data.posts)
-        //             context.commit('getPostByCatId',response.data.posts)
-        //         })
-        // },
+        getPostByCatId(context,payload){
+            axios.get('/categorypost/'+payload)
+                .then((response)=>{
+                    console.log(response.data.posts)
+                    context.commit('getPostByCatId',response.data.posts)
+                })
+        },
         // SearchPost(context,payload){
         //     axios.get('/search?s='+payload)
         //         .then((response)=>{
@@ -100,9 +100,9 @@ export default {
         allcategories(state,payload){
             return state.allcategories = payload
         },
-        // getPostByCatId(state,payload){
-        //     state.blogpost = payload
-        // },
+        getPostByCatId(state,payload){
+            state.blogpost = payload
+        },
         // getSearchPost(state,payload){
         //     state.blogpost = payload
         // },
