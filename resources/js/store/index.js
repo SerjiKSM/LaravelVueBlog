@@ -2,10 +2,10 @@ export default {
     state: {
         category: [],
         post: [],
-        blogpost:[],
-        singlepost:[],
-        allcategories:[],
-        latestpost:[]
+        blogpost: [],
+        singlepost: [],
+        allcategories: [],
+        latestpost: []
     },
     getters: {
         getCategory(state) {
@@ -14,16 +14,16 @@ export default {
         getPost(state) {
             return state.post
         },
-        getblogPost(state){
+        getblogPost(state) {
             return state.blogpost
         },
-        singlepost(state){
+        singlepost(state) {
             return state.singlepost
         },
-        allcategories(state){
+        allcategories(state) {
             return state.allcategories
         },
-        latestpost(state){
+        latestpost(state) {
             return state.latestpost
         }
 
@@ -49,38 +49,38 @@ export default {
                     context.commit('getblogPost', response.data.posts)
                 })
         },
-        getPostById(context,payload){
-            axios.get('/singlepost/'+payload)
-                .then((response)=>{
-                    context.commit('siglePost',response.data.post)
+        getPostById(context, payload) {
+            axios.get('/singlepost/' + payload)
+                .then((response) => {
+                    context.commit('siglePost', response.data.post)
                 })
         },
-        allcategories(context){
+        allcategories(context) {
             axios.get('/categories')
-                .then((response)=>{
+                .then((response) => {
 
-                    context.commit('allcategories',response.data.categories)
+                    context.commit('allcategories', response.data.categories)
                 })
         },
-        getPostByCatId(context,payload){
-            axios.get('/categorypost/'+payload)
-                .then((response)=>{
+        getPostByCatId(context, payload) {
+            axios.get('/categorypost/' + payload)
+                .then((response) => {
                     console.log(response.data.posts)
-                    context.commit('getPostByCatId',response.data.posts)
+                    context.commit('getPostByCatId', response.data.posts)
                 })
         },
-        // SearchPost(context,payload){
-        //     axios.get('/search?s='+payload)
-        //         .then((response)=>{
-        //             context.commit('getSearchPost',response.data.posts)
-        //         })
-        //
-        // },
-        latestPost(context){
+        SearchPost(context, payload) {
+            axios.get('/search?s=' + payload)
+                .then((response) => {
+                    context.commit('getSearchPost', response.data.posts)
+                })
+
+        },
+        latestPost(context) {
             axios.get('/latestpost')
-                .then((response)=>{
+                .then((response) => {
                     // console.log(response.data)
-                    context.commit('latestpost',response.data.posts)
+                    context.commit('latestpost', response.data.posts)
                 })
         }
     },
@@ -91,22 +91,22 @@ export default {
         posts(state, payload) {
             return state.post = payload
         },
-        getblogPost(state,payload){
+        getblogPost(state, payload) {
             return state.blogpost = payload
         },
-        siglePost(state,payload){
+        siglePost(state, payload) {
             return state.singlepost = payload
         },
-        allcategories(state,payload){
+        allcategories(state, payload) {
             return state.allcategories = payload
         },
-        getPostByCatId(state,payload){
+        getPostByCatId(state, payload) {
             state.blogpost = payload
         },
-        // getSearchPost(state,payload){
-        //     state.blogpost = payload
-        // },
-        latestpost(state,payload){
+        getSearchPost(state, payload) {
+            state.blogpost = payload
+        },
+        latestpost(state, payload) {
             state.latestpost = payload
         }
     }

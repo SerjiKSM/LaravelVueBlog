@@ -4,8 +4,9 @@
             <aside class="right-sidebar">
               <div class="widget">
                 <form class="form-search">
-                  <!--<input @keyup="RealSearch" placeholder="Type something" v-model="keyword" type="text" class="input-medium search-query">-->
-                  <!--<button type="submit" @click.prevent="RealSearch" class="btn btn-square btn-theme">Search</button>-->
+                  <input @keyup="RealSearch" placeholder="Type something" v-model="keyword" type="text"
+                         class="input-medium search-query">
+                  <button type="submit" @click.prevent="RealSearch" class="btn btn-square btn-theme">Search</button>
                 </form>
               </div>
               <div class="widget">
@@ -23,7 +24,7 @@
                 <h5 class="widgetheading">Latest posts</h5>
                 <ul class="recent">
 
-                  <li v-for="(post,index) in blogpost"  v-if="index<5">
+                  <li v-for="(post,index) in blogpost" v-if="index<5">
                     <img :src="`uploadImage/${post.photo}`" class="pull-left" alt="" width="40" height="40"/>
                     <h6><router-link :to="`/blog/${post.id}`">{{post.title}}</router-link></h6>
                     <p>
@@ -41,29 +42,30 @@
 
 <script>
     import _ from 'lodash'
+
     export default {
         name: "blog-sidebar",
-        data(){
+        data() {
             return {
-                keyword:''
+                keyword: ''
             }
         },
-        computed:{
-            allcategories(){
+        computed: {
+            allcategories() {
                 return this.$store.getters.allcategories;
             },
-            blogpost(){
+            blogpost() {
                 return this.$store.getters.latestpost
             }
         },
-        mounted(){
+        mounted() {
             this.$store.dispatch('latestPost');
             this.$store.dispatch('allcategories')
         },
-        methods:{
-            // RealSearch:_.debounce(function () {
-            //     this.$store.dispatch('SearchPost',this.keyword);
-            // },1000)
+        methods: {
+            RealSearch: _.debounce(function () {
+                this.$store.dispatch('SearchPost', this.keyword);
+            }, 1000)
         }
 
     }
